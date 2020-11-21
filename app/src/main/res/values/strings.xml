@@ -1,9 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AAMovieProject</string>
     <string name="back">Back</string>
-    <string name="title">Avengers: End Game</string>
+    <string name="title">Avengers:\nEnd Game</string>
     <string name="genres">Action, Adventure, Fantasy</string>
-    <string name="numbersOfReviews">125 Reviews</string>
+    <string name="numberOfReviews">125 Reviews</string>
     <string name="storyline">Storyline</string>
+    <string name="ageRestriction">13+</string>
     <string name="plot">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
+    <string name="cast">Cast</string>
+    <string name="downey_name">Robert Downey Jr.</string>
+    <string name="evans_name">Chris Evans</string>
+    <string name="ruffalo_name">Mark Ruffalo</string>
+    <string name="hemsworth_name">Chris Hemsworth</string>
 </resources>
