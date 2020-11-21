@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            android:src="@drawable/background"
+            app:srcCompat="@drawable/background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -157,12 +157,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/storyline"
-            android:textColor="@color/light_gray"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/reviews" />
+            app:layout_constraintTop_toBottomOf="@id/reviews"
+            style="@style/header" />
 
         <TextView
             android:id="@+id/plot"
@@ -172,6 +170,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/roboto_light"
+            android:lineSpacingExtra="4sp"
             android:text="@string/plot"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
@@ -184,12 +183,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/cast"
-            android:textColor="@color/light_gray"
-            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/plot" />
+            app:layout_constraintTop_toBottomOf="@id/plot"
+            style="@style/header"/>
 
         <ImageView
             android:id="@+id/downey"
@@ -250,52 +247,44 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/downey_name"
-            android:textColor="@color/light_gray"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/downey"
             app:layout_constraintStart_toStartOf="@id/downey"
-            app:layout_constraintTop_toBottomOf="@id/downey" />
+            app:layout_constraintTop_toBottomOf="@id/downey"
+            style="@style/name_of_actors" />
 
         <TextView
             android:id="@+id/tv_evans"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/evans_name"
-            android:textColor="@color/light_gray"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/evans"
             app:layout_constraintStart_toStartOf="@id/evans"
-            app:layout_constraintTop_toBottomOf="@id/evans" />
+            app:layout_constraintTop_toBottomOf="@id/evans"
+            style="@style/name_of_actors" />
 
         <TextView
             android:id="@+id/tv_ruffalo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/ruffalo_name"
-            android:textColor="@color/light_gray"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/ruffalo"
             app:layout_constraintStart_toStartOf="@id/ruffalo"
-            app:layout_constraintTop_toBottomOf="@id/ruffalo" />
+            app:layout_constraintTop_toBottomOf="@id/ruffalo"
+            style="@style/name_of_actors" />
 
         <TextView
             android:id="@+id/tv_hemsworth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/hemsworth_name"
-            android:textColor="@color/light_gray"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/hemsworth"
             app:layout_constraintStart_toStartOf="@id/hemsworth"
-            app:layout_constraintTop_toBottomOf="@id/hemsworth" />
+            app:layout_constraintTop_toBottomOf="@id/hemsworth"
+            style="@style/name_of_actors" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
