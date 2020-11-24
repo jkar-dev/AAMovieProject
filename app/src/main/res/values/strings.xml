@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">AAMovieProject</string>
     <string name="back">Back</string>
-    <string name="title">Avengers:\nEnd Game</string>
+    <string name="title">Avengers: End Game</string>
     <string name="genres">Action, Adventure, Fantasy</string>
     <string name="numberOfReviews">125 Reviews</string>
     <string name="storyline">Storyline</string>
@@ -13,4 +13,6 @@
     <string name="evans_name">Chris Evans</string>
     <string name="ruffalo_name">Mark Ruffalo</string>
     <string name="hemsworth_name">Chris Hemsworth</string>
+    <string name="movies_list">Movies list</string>
+    <string name="duration">137 MIN</string>
 </resources>
