@@ -9,11 +9,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        openDetailsActivity()
-    }
-
-    private fun openDetailsActivity() {
-        val intent = Intent(this, MovieDetailsActivity::class.java)
-        startActivity(intent)
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container, FragmentMoviesList())
+                .commit()
+        }
     }
 }
