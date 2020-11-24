@@ -62,14 +62,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/roboto_black"
             android:text="@string/title"
-            android:textColor="@color/light_gray"
-            android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/age_restriction"
-            tools:lines="2" />
+            style="@style/title" />
 
         <TextView
             android:id="@+id/genres"
@@ -165,7 +162,7 @@
             android:text="@string/storyline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/reviews"
-            style="@style/header" />
+            style="@style/Header" />
 
         <TextView
             android:id="@+id/plot"
@@ -191,7 +188,7 @@
             android:text="@string/cast"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/plot"
-            style="@style/header"/>
+            style="@style/Header"/>
 
         <ImageView
             android:id="@+id/downey"
@@ -256,7 +253,7 @@
             app:layout_constraintEnd_toEndOf="@id/downey"
             app:layout_constraintStart_toStartOf="@id/downey"
             app:layout_constraintTop_toBottomOf="@id/downey"
-            style="@style/name_of_actors" />
+            style="@style/NameOfActor" />
 
         <TextView
             android:id="@+id/tv_evans"
@@ -267,7 +264,7 @@
             app:layout_constraintEnd_toEndOf="@id/evans"
             app:layout_constraintStart_toStartOf="@id/evans"
             app:layout_constraintTop_toBottomOf="@id/evans"
-            style="@style/name_of_actors" />
+            style="@style/NameOfActor" />
 
         <TextView
             android:id="@+id/tv_ruffalo"
@@ -278,7 +275,7 @@
             app:layout_constraintEnd_toEndOf="@id/ruffalo"
             app:layout_constraintStart_toStartOf="@id/ruffalo"
             app:layout_constraintTop_toBottomOf="@id/ruffalo"
-            style="@style/name_of_actors" />
+            style="@style/NameOfActor" />
 
         <TextView
             android:id="@+id/tv_hemsworth"
@@ -289,7 +286,7 @@
             app:layout_constraintEnd_toEndOf="@id/hemsworth"
             app:layout_constraintStart_toStartOf="@id/hemsworth"
             app:layout_constraintTop_toBottomOf="@id/hemsworth"
-            style="@style/name_of_actors" />
+            style="@style/NameOfActor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
