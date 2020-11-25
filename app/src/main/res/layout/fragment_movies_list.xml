@@ -20,6 +20,7 @@
         app:drawableStartCompat="@drawable/ic_aim" />
 
     <include
+        android:id="@+id/movie_item"
         layout="@layout/movie_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
