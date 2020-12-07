@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject
+package com.jkapps.aamovieproject.ui.details
 
 import android.content.Context
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.jkapps.aamovieproject.NavigationListener
+import com.jkapps.aamovieproject.R
 
 class FragmentMoviesDetails : Fragment() {
     private var navListener : NavigationListener? = null
