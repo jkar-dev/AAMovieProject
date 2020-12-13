@@ -11,11 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.model.Movie
 
-class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
-    private var movies : List<Movie> = listOf()
+class MovieListAdapter(private val listener : OnMovieClickListener) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
+    private val movies : MutableList<Movie> = mutableListOf()
+
+    interface OnMovieClickListener {
+        fun onClick(movie : Movie)
+    }
 
     fun setMovies(movies : List<Movie>) {
-        this.movies = movies
+        this.movies.apply {
+            clear()
+            addAll(movies)
+        }
         notifyDataSetChanged()
     }
 
@@ -32,7 +39,7 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHold
         holder.bind(movies[position])
     }
 
-    class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val ivPoster : ImageView = itemView.findViewById(R.id.iv_poster)
         private val tvTitle : TextView = itemView.findViewById(R.id.tv_title)
         private val tvGenres : TextView = itemView.findViewById(R.id.tv_genres)
@@ -49,7 +56,9 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MovieListViewHold
             rbRate.rating = movie.rate
             tvReviews.text = movie.numberOfReviewers
             tvDuration.text = movie.duration
+            itemView.setOnClickListener {
+                listener.onClick(movie)
+            }
         }
     }
-
 }

@@ -1,7 +1,10 @@
 package com.jkapps.aamovieproject.model
 
+import android.os.Parcelable
 import androidx.annotation.DrawableRes
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Movie(
     @DrawableRes
     val image : Int,
@@ -13,7 +16,7 @@ data class Movie(
     val description : String,
     val actors : List<Actor>,
     private val _duration : Int
-) {
+) : Parcelable {
     val numberOfReviewers : String get() = "$_numberOfReviewers Reviewers"
     val ageRestriction : String get() = "$_ageRestriction+"
     val duration : String get() = "$_duration MIN"

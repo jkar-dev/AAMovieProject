@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.DataSource
+import com.jkapps.aamovieproject.model.Movie
 import com.jkapps.aamovieproject.ui.MovieListAdapter
 
-class FragmentMoviesList : Fragment() {
+class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private var navListener: NavigationListener? = null
-    private val adapter = MovieListAdapter()
+    private val adapter = MovieListAdapter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movies_list, container, false)
@@ -25,7 +26,6 @@ class FragmentMoviesList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
         adapter.setMovies(DataSource.movies)
-
     }
 
     private fun setUpRecycler() {
@@ -44,5 +44,9 @@ class FragmentMoviesList : Fragment() {
     override fun onDetach() {
         super.onDetach()
         navListener = null
+    }
+
+    override fun onClick(movie: Movie) {
+        navListener?.openDetails(movie)
     }
 }
