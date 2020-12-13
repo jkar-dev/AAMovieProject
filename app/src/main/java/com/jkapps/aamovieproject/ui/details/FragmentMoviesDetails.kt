@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -31,11 +33,32 @@ class FragmentMoviesDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        fillInformation(view)
         setUpRecycler()
-        movie?.let { adapter.setActors(it.actors) }
 
         view.findViewById<TextView>(R.id.tv_back).setOnClickListener {
             navListener?.pop()
+        }
+    }
+
+    private fun fillInformation(view : View) {
+        movie?.let {
+            val ivPoster : ImageView = view.findViewById<ImageView>(R.id.iv_poster)
+            val tvAge : TextView = view.findViewById(R.id.tv_age_restriction)
+            val tvTitle : TextView = view.findViewById(R.id.tv_title)
+            val tvGenres : TextView = view.findViewById(R.id.tv_genres)
+            val tvReviews : TextView = view.findViewById(R.id.tv_reviews)
+            val rbRate : RatingBar = view.findViewById(R.id.rb_rate)
+            val tvDescription : TextView = view.findViewById(R.id.tv_description)
+
+            ivPoster.setImageResource(it.poster)
+            tvAge.text = it.ageRestriction
+            tvTitle.text = it.title
+            tvGenres.text = it.genres.joinToString()
+            tvReviews.text = it.numberOfReviewers
+            rbRate.rating = it.rate
+            tvDescription.text = it.description
+            adapter.setActors(it.actors)
         }
     }
 

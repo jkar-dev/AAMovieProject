@@ -13,6 +13,7 @@ object DataSource {
     val movies = listOf(
         Movie(
             R.drawable.poster,
+            R.drawable.origbackground,
             "Avengers: End Game",
             13,
             listOf("Action", "Fantasy", "Adventure"),
@@ -24,6 +25,7 @@ object DataSource {
         ),
         Movie(
             R.drawable.poster,
+            R.drawable.origbackground,
             "Avengers: End Game",
             13,
             listOf("Action", "Fantasy", "Adventure"),
@@ -35,6 +37,7 @@ object DataSource {
         ),
         Movie(
             R.drawable.poster,
+            R.drawable.origbackground,
             "Avengers: End Game",
             13,
             listOf("Action", "Fantasy", "Adventure"),
@@ -46,6 +49,7 @@ object DataSource {
         ),
         Movie(
             R.drawable.poster,
+            R.drawable.origbackground,
             "Avengers: End Game",
             13,
             listOf("Action", "Fantasy", "Adventure"),
