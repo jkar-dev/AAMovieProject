@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
-import com.jkapps.aamovieproject.data.DataSource
-import com.jkapps.aamovieproject.model.Movie
-import com.jkapps.aamovieproject.ui.MovieListAdapter
+import com.jkapps.aamovieproject.data.Movie
+import com.jkapps.aamovieproject.data.loadMovies
+import com.jkapps.aamovieproject.adapters.MovieListAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private var navListener: NavigationListener? = null
@@ -25,7 +28,11 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        adapter.setMovies(DataSource.movies)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val movies = loadMovies(requireContext())
+            adapter.setMovies(movies)
+        }
     }
 
     private fun setUpRecycler() {
