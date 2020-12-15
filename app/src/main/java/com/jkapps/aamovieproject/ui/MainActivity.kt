@@ -1,7 +1,12 @@
-package com.jkapps.aamovieproject
+package com.jkapps.aamovieproject.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.jkapps.aamovieproject.ui.details.FragmentMoviesDetails
+import com.jkapps.aamovieproject.ui.list.FragmentMoviesList
+import com.jkapps.aamovieproject.NavigationListener
+import com.jkapps.aamovieproject.R
+import com.jkapps.aamovieproject.model.Movie
 
 class MainActivity : AppCompatActivity(), NavigationListener {
 
@@ -21,10 +26,13 @@ class MainActivity : AppCompatActivity(), NavigationListener {
         supportFragmentManager.popBackStack()
     }
 
-    override fun openDetails() {
+    override fun openDetails(movie : Movie) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container, FragmentMoviesDetails())
+            .replace(
+                R.id.container,
+                FragmentMoviesDetails.instance(movie)
+            )
             .addToBackStack(null)
             .commit()
     }
