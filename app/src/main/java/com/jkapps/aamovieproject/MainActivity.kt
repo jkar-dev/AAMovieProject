@@ -1,19 +1,31 @@
 package com.jkapps.aamovieproject
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationListener {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        openDetailsActivity()
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container, FragmentMoviesList())
+                .commit()
+        }
     }
 
-    private fun openDetailsActivity() {
-        val intent = Intent(this, MovieDetailsActivity::class.java)
-        startActivity(intent)
+    override fun pop() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun openDetails() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, FragmentMoviesDetails())
+            .addToBackStack(null)
+            .commit()
     }
 }
