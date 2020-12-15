@@ -4,13 +4,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_margin="4dp">
+    android:layout_margin="6dp">
 
     <ImageView
         android:id="@+id/iv_photo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        tools:src="@drawable/downey" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:src = "@drawable/downey"/>
 
     <TextView
         android:id="@+id/tv_name"

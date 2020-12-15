@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject
+package com.jkapps.aamovieproject.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.jkapps.aamovieproject.model.Actor
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.jkapps.aamovieproject.R
+import com.jkapps.aamovieproject.data.Actor
 
 class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
     private val actors = mutableListOf<Actor>()
@@ -37,8 +42,12 @@ class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
         private val tvName : TextView = itemView.findViewById(R.id.tv_name)
 
         fun bind(actor: Actor) {
-            ivPhoto.setImageResource(actor.photo)
-            tvName.setText(actor.name)
+            Glide.with(itemView)
+                .load(actor.picture)
+                .transform(MultiTransformation(CenterCrop(), RoundedCorners(20)))
+                .into(ivPhoto)
+
+            tvName.text = actor.name
         }
     }
 

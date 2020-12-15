@@ -1,6 +1,7 @@
 package com.jkapps.aamovieproject
 
-import com.jkapps.aamovieproject.model.Movie
+import com.jkapps.aamovieproject.data.Movie
+
 
 interface NavigationListener {
     fun pop()
