@@ -15,10 +15,12 @@ import com.jkapps.aamovieproject.data.loadMovies
 import com.jkapps.aamovieproject.adapters.MovieListAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private var navListener: NavigationListener? = null
+    private var job : Job? = null
     private val adapter = MovieListAdapter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,7 +31,7 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
 
-        CoroutineScope(Dispatchers.Main).launch {
+        job = CoroutineScope(Dispatchers.Main).launch {
             val movies = loadMovies(requireContext())
             adapter.setMovies(movies)
         }
@@ -41,6 +43,11 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
             adapter = this@FragmentMoviesList.adapter
             layoutManager = GridLayoutManager(requireContext(), 2)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        job?.cancel()
     }
 
     override fun onAttach(context: Context) {
