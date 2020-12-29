@@ -8,25 +8,29 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.jkapps.aamovieproject.adapters.ActorsAdapter
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
+import com.jkapps.aamovieproject.adapters.ActorsAdapter
 import com.jkapps.aamovieproject.data.entity.Movie
 
 class FragmentMoviesDetails : Fragment() {
     private var navListener: NavigationListener? = null
-    private var movie: Movie? = null
     private val adapter = ActorsAdapter()
+    private val viewModel: DetailsViewModel by lazy { ViewModelProvider(this)[DetailsViewModel::class.java] }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        movie = arguments?.getParcelable(KEY_MOVIE)
-    }
+    private var ivPoster: ImageView? = null
+    private var tvAge: TextView? = null
+    private var tvTitle: TextView? = null
+    private var tvGenres: TextView? = null
+    private var tvReviews: TextView? = null
+    private var rbRate: RatingBar? = null
+    private var tvDescription: TextView? = null
+    private var tvCast: TextView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_movies_details, container, false)
@@ -34,38 +38,28 @@ class FragmentMoviesDetails : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fillInformation(view)
+        initViews(view)
+        setUpRecycler()
+        setMovie()
 
         view.findViewById<TextView>(R.id.tv_back).setOnClickListener {
             navListener?.pop()
         }
+
+        viewModel.movie.observe(this) {
+            fillWithInformation(it)
+        }
     }
 
-    private fun fillInformation(view: View) {
-        movie?.let {
-            val ivPoster: ImageView = view.findViewById(R.id.iv_poster)
-            val tvAge: TextView = view.findViewById(R.id.tv_age_restriction)
-            val tvTitle: TextView = view.findViewById(R.id.tv_title)
-            val tvGenres: TextView = view.findViewById(R.id.tv_genres)
-            val tvReviews: TextView = view.findViewById(R.id.tv_reviews)
-            val rbRate: RatingBar = view.findViewById(R.id.rb_rate)
-            val tvDescription: TextView = view.findViewById(R.id.tv_description)
-
-            Glide.with(view).load(it.backdrop).into(ivPoster)
-            tvAge.text = getString(R.string.age_format, it.minimumAge)
-            tvTitle.text = it.title
-            tvGenres.text = it.genres.joinToString { genre -> genre.name }
-            tvReviews.text = getString(R.string.reviews_format, it.numberOfRatings)
-            rbRate.rating = it.ratings / 2
-            tvDescription.text = it.overview
-
-            if (it.actors.isEmpty()) {
-                view.findViewById<View>(R.id.tv_cast).apply { isVisible = false }
-            } else {
-                adapter.setActors(it.actors)
-                setUpRecycler()
-            }
-        }
+    private fun initViews(view: View) {
+        ivPoster = view.findViewById(R.id.iv_poster)
+        tvAge = view.findViewById(R.id.tv_age_restriction)
+        tvTitle = view.findViewById(R.id.tv_title)
+        tvGenres = view.findViewById(R.id.tv_genres)
+        tvReviews = view.findViewById(R.id.tv_reviews)
+        rbRate = view.findViewById(R.id.rb_rate)
+        tvDescription = view.findViewById(R.id.tv_description)
+        tvCast = view.findViewById(R.id.tv_cast)
     }
 
     private fun setUpRecycler() {
@@ -75,6 +69,37 @@ class FragmentMoviesDetails : Fragment() {
             layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             setHasFixedSize(true)
         }
+    }
+
+    private fun setMovie() {
+        arguments?.getParcelable<Movie>(KEY_MOVIE)?.let {
+            viewModel.setMovie(it)
+        }
+    }
+
+    private fun fillWithInformation(movie: Movie) {
+        Glide.with(requireContext()).load(movie.backdrop).into(ivPoster!!)
+        tvAge?.text = getString(R.string.age_format, movie.minimumAge)
+        tvTitle?.text = movie.title
+        tvGenres?.text = movie.genres.joinToString { genre -> genre.name }
+        tvReviews?.text = getString(R.string.reviews_format, movie.numberOfRatings)
+        rbRate?.rating = movie.ratings / 2
+        tvDescription?.text = movie.overview
+
+        if (movie.actors.isEmpty()) tvCast?.visibility = View.GONE
+        else adapter.setActors(movie.actors)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        ivPoster = null
+        tvAge = null
+        tvTitle = null
+        tvGenres = null
+        tvReviews = null
+        rbRate = null
+        tvDescription = null
+        tvCast = null
     }
 
     override fun onAttach(context: Context) {
