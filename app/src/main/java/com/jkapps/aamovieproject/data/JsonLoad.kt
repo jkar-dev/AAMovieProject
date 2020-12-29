@@ -1,6 +1,9 @@
 package com.jkapps.aamovieproject.data
 
 import android.content.Context
+import com.jkapps.aamovieproject.data.entity.Actor
+import com.jkapps.aamovieproject.data.entity.Genre
+import com.jkapps.aamovieproject.data.entity.Movie
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.SerialName
@@ -87,22 +90,22 @@ internal fun parseMovies(
 
     return jsonMovies.map { jsonMovie ->
         @Suppress("unused")
-        Movie(
-            id = jsonMovie.id,
-            title = jsonMovie.title,
-            overview = jsonMovie.overview,
-            poster = jsonMovie.posterPicture,
-            backdrop = jsonMovie.backdropPicture,
-            ratings = jsonMovie.ratings,
-            numberOfRatings = jsonMovie.votesCount,
-            minimumAge = if (jsonMovie.adult) 16 else 13,
-            runtime = jsonMovie.runtime,
-            genres = jsonMovie.genreIds.map {
-                genresMap[it] ?: throw IllegalArgumentException("Genre not found")
-            },
-            actors = jsonMovie.actors.map {
-                actorsMap[it] ?: throw IllegalArgumentException("Actor not found")
-            }
-        )
+        (Movie(
+        id = jsonMovie.id,
+        title = jsonMovie.title,
+        overview = jsonMovie.overview,
+        poster = jsonMovie.posterPicture,
+        backdrop = jsonMovie.backdropPicture,
+        ratings = jsonMovie.ratings,
+        numberOfRatings = jsonMovie.votesCount,
+        minimumAge = if (jsonMovie.adult) 16 else 13,
+        runtime = jsonMovie.runtime,
+        genres = jsonMovie.genreIds.map {
+            genresMap[it] ?: throw IllegalArgumentException("Genre not found")
+        },
+        actors = jsonMovie.actors.map {
+            actorsMap[it] ?: throw IllegalArgumentException("Actor not found")
+        }
+    ))
     }
 }

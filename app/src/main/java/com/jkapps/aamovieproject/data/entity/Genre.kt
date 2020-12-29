@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject.data
+package com.jkapps.aamovieproject.data.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

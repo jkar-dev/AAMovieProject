@@ -1,6 +1,6 @@
 package com.jkapps.aamovieproject
 
-import com.jkapps.aamovieproject.data.Movie
+import com.jkapps.aamovieproject.data.entity.Movie
 
 
 interface NavigationListener {

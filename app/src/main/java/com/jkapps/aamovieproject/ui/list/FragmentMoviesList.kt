@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
-import com.jkapps.aamovieproject.data.Movie
+import com.jkapps.aamovieproject.data.entity.Movie
 import com.jkapps.aamovieproject.data.loadMovies
 import com.jkapps.aamovieproject.adapters.MovieListAdapter
 import kotlinx.coroutines.CoroutineScope

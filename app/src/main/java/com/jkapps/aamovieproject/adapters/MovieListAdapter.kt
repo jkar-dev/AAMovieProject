@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.jkapps.aamovieproject.R
-import com.jkapps.aamovieproject.data.Movie
+import com.jkapps.aamovieproject.data.entity.Movie
 
 class MovieListAdapter(private val listener: OnMovieClickListener) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
     private val movies: MutableList<Movie> = mutableListOf()
