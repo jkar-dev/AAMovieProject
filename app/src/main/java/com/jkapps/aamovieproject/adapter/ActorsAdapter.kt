@@ -44,6 +44,7 @@ class ActorsAdapter : RecyclerView.Adapter<ActorsAdapter.ActorViewHolder>() {
         fun bind(actor: Actor) {
             Glide.with(itemView)
                 .load(actor.picture)
+                .placeholder(R.drawable.user_placeholder)
                 .transform(MultiTransformation(CenterCrop(), RoundedCorners(20)))
                 .into(ivPhoto)
 
