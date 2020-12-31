@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jkapps.aamovieproject.data.MovieInteractor
+import com.jkapps.aamovieproject.data.Result
 import com.jkapps.aamovieproject.data.entity.Movie
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() {
@@ -21,7 +23,12 @@ class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() 
 
     private fun loadMovies() {
         viewModelScope.launch {
-            _movies.value = interactor.loadMovies()
+            val result = interactor.loadMovies()
+                when (result) {
+                    is Result.Success -> _movies.value = result.output
+                    is Result.Error -> {}//TODO()
+                }
+
         }
     }
 }

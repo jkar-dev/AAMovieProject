@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +14,7 @@ import com.jkapps.aamovieproject.MyViewModelFactory
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
-import com.jkapps.aamovieproject.data.loadMovies
 import com.jkapps.aamovieproject.adapters.MovieListAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private var navListener: NavigationListener? = null
