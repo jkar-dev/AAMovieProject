@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     android:background="@drawable/item_background"
     android:elevation="4dp"
-    android:padding="4dp"
-    android:layout_margin="4dp">
+    android:padding="4dp">
 
     <ImageView
         android:id="@+id/iv_poster"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/poster" />
 
     <View
         android:layout_width="0dp"
@@ -46,11 +47,11 @@
         android:background="@drawable/rounded_rectangle"
         android:fontFamily="@font/roboto_black"
         android:gravity="center"
-        android:text="@string/ageRestriction"
         android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/ageRestriction" />
 
     <RatingBar
         android:id="@+id/rb_rate"
@@ -74,12 +75,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/roboto_light"
-        android:text="@string/genres"
         android:textColor="@color/reddish_pink"
         android:textSize="8sp"
         app:layout_constraintBottom_toTopOf="@id/rb_rate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/genres" />
 
 
     <TextView
@@ -88,11 +89,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/roboto_black"
-        android:text="@string/numberOfReviews"
         android:textColor="@color/light_grayish_blue"
         android:textSize="8sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_title"
         app:layout_constraintStart_toEndOf="@id/rb_rate"
-        app:layout_constraintBottom_toTopOf="@id/tv_title" />
+        tools:text="@string/numberOfReviews" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -102,12 +103,12 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/roboto"
-        android:text="@string/title"
         android:textColor="@color/light_gray"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_poster" />
+        app:layout_constraintTop_toBottomOf="@id/iv_poster"
+        tools:text="@string/title" />
 
     <TextView
         android:id="@+id/tv_duration"
@@ -115,11 +116,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/roboto_black"
-        android:text="@string/duration"
         android:textColor="@color/light_grayish_blue"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="@id/tv_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        tools:text="@string/duration" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
