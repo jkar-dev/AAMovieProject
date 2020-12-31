@@ -18,7 +18,6 @@ object NetworkModule {
         val originalUrl = original.url
         val url = originalUrl.newBuilder()
             .addQueryParameter("api_key", API_KEY)
-            .addQueryParameter("append_to_response", "credits")
             .build()
         val request = original.newBuilder().url(url).build()
         it.proceed(request)

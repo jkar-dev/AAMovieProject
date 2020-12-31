@@ -12,5 +12,6 @@ interface TmdbApiService {
     suspend fun getPopularMovies(@Query("page") page: Int) : MovieListResponse
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieById(@Path("movie_id") id: Int): MovieResponse
+    suspend fun getMovieById(@Path("movie_id") id: Int,
+                             @Query("append_to_response") append : String = "credits"): MovieResponse
 }
