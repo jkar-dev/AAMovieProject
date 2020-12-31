@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
+import com.jkapps.aamovieproject.databinding.MovieItemBinding
 
 class MovieListAdapter(private val listener: OnMovieClickListener) : ListAdapter<Movie, MovieListAdapter.MovieListViewHolder>(MovieCallback()) {
 
@@ -21,23 +22,16 @@ class MovieListAdapter(private val listener: OnMovieClickListener) : ListAdapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-        return MovieListViewHolder(view)
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = MovieItemBinding.inflate(inflater, parent, false)
+        return MovieListViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val ivPoster: ImageView = itemView.findViewById(R.id.iv_poster)
-        private val tvTitle: TextView = itemView.findViewById(R.id.tv_title)
-        private val tvGenres: TextView = itemView.findViewById(R.id.tv_genres)
-        private val tvAge: TextView = itemView.findViewById(R.id.tv_age_restriction)
-        private val rbRate: RatingBar = itemView.findViewById(R.id.rb_rate)
-        private val tvReviews: TextView = itemView.findViewById(R.id.tv_reviews)
-        private val tvDuration: TextView = itemView.findViewById(R.id.tv_duration)
-
+    inner class MovieListViewHolder(private val binding: MovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private val ageFormat: String = itemView.context.getString(R.string.age_format)
         private val reviewsFormat: String = itemView.context.getString(R.string.reviews_format)
         private val durationFormat: String = itemView.context.getString(R.string.duration_format)
@@ -47,14 +41,14 @@ class MovieListAdapter(private val listener: OnMovieClickListener) : ListAdapter
                 .load(movie.poster)
                 .placeholder(R.drawable.placeholder)
                 .transform(RoundedCorners(20))
-                .into(ivPoster)
-            tvTitle.text = movie.title
-            tvGenres.text = movie.genres.joinToString { genre -> genre.name }
-            tvAge.text = String.format(ageFormat, movie.minimumAge)
-            rbRate.rating = movie.ratings / 2
-            tvReviews.text = String.format(reviewsFormat, movie.numberOfRatings)
-            tvDuration.text = String.format(durationFormat, movie.runtime)
-            itemView.setOnClickListener {
+                .into(binding.ivPoster)
+            binding.tvTitle.text = movie.title
+            binding.tvGenres.text = movie.genres.joinToString { genre -> genre.name }
+            binding.tvAgeRestriction.text = String.format(ageFormat, movie.minimumAge)
+            binding.rbRate.rating = movie.ratings / 2
+            binding.tvReviews.text = String.format(reviewsFormat, movie.numberOfRatings)
+            binding.tvDuration.text = String.format(durationFormat, movie.runtime)
+            binding.root.setOnClickListener {
                 listener.onClick(movie)
             }
         }

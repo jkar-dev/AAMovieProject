@@ -16,14 +16,17 @@ import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
 import com.jkapps.aamovieproject.adapter.MovieListAdapter
+import com.jkapps.aamovieproject.databinding.FragmentMoviesListBinding
 
 class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
-    private var navListener: NavigationListener? = null
-    private val adapter = MovieListAdapter(this)
     private lateinit var viewModel: MovieListViewModel
+    private val adapter = MovieListAdapter(this)
+    private var binding : FragmentMoviesListBinding? = null
+    private var navListener: NavigationListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_movies_list, container, false)
+        binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,13 +43,11 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     }
 
     private fun setLoading(isLoading: Boolean) {
-        val pb = requireView().findViewById<ProgressBar>(R.id.pb_loading)
-        pb.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding?.pbLoading?.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setUpRecycler() {
-        val recycler = requireView().findViewById<RecyclerView>(R.id.rv_movies)
-        recycler.apply {
+        binding?.rvMovies?.apply {
             adapter = this@FragmentMoviesList.adapter
             layoutManager = GridLayoutManager(requireContext(), 2)
         }
@@ -55,6 +56,11 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private fun initViewModel() {
         val factory = MyViewModelFactory(App.instance!!.interactor)
         viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 
     override fun onAttach(context: Context) {
