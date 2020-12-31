@@ -4,7 +4,7 @@ import com.jkapps.aamovieproject.data.entity.Movie
 
 class MovieInteractor(private val repository: MovieRepository) {
 
-    suspend fun loadMovies(page : Int = 1): Result<List<Movie>> {
+    suspend fun loadMovies(page : Int): Result<List<Movie>> {
         return try {
             val ids = repository.loadMovie(page)
             val listOfMovie = mutableListOf<Movie>()

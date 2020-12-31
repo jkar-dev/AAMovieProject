@@ -1,15 +1,12 @@
 package com.jkapps.aamovieproject.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
@@ -40,7 +37,7 @@ class MovieListAdapter(private val listener: OnMovieClickListener) : ListAdapter
             Glide.with(itemView)
                 .load(movie.poster)
                 .placeholder(R.drawable.placeholder)
-                .transform(RoundedCorners(20))
+                .transform(CenterCrop(), RoundedCorners(15))
                 .into(binding.ivPoster)
             binding.tvTitle.text = movie.title
             binding.tvGenres.text = movie.genres.joinToString { genre -> genre.name }

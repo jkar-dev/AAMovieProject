@@ -50,6 +50,16 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
         binding?.rvMovies?.apply {
             adapter = this@FragmentMoviesList.adapter
             layoutManager = GridLayoutManager(requireContext(), 2)
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    val lastVisiblePosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
+                    if (lastVisiblePosition > (adapter as RecyclerView.Adapter).itemCount - 2) {
+                        viewModel.loadMovies()
+                    }
+                }
+            })
         }
     }
 
