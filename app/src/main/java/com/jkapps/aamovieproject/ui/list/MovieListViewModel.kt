@@ -12,10 +12,10 @@ import kotlinx.coroutines.launch
 
 class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() {
     private val _movies : MutableLiveData<List<Movie>> = MutableLiveData()
-    //private val _isLoading : MutableLiveData<Boolean> = MutableLiveData(true)
+    private val _isLoading : MutableLiveData<Boolean> = MutableLiveData(true)
 
     val movies : LiveData<List<Movie>> get() = _movies
-    //val isLoading : LiveData<Boolean> get() = _isLoading
+    val isLoading : LiveData<Boolean> get() = _isLoading
 
     init {
         loadMovies()
@@ -23,12 +23,13 @@ class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() 
 
     private fun loadMovies() {
         viewModelScope.launch {
+            _isLoading.value = true
             val result = interactor.loadMovies()
                 when (result) {
                     is Result.Success -> _movies.value = result.output
                     is Result.Error -> {}//TODO()
                 }
-
+            _isLoading.value = false
         }
     }
 }

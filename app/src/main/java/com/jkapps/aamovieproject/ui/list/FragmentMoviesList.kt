@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,7 +15,7 @@ import com.jkapps.aamovieproject.MyViewModelFactory
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
-import com.jkapps.aamovieproject.adapters.MovieListAdapter
+import com.jkapps.aamovieproject.adapter.MovieListAdapter
 
 class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     private var navListener: NavigationListener? = null
@@ -31,9 +32,8 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
         initViewModel()
 
         viewModel.movies.observe(this) {
-            adapter.setMovies(it)
+            adapter.submitList(it)
         }
-
     }
 
     private fun setUpRecycler() {

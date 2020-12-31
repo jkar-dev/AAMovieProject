@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject.adapters
+package com.jkapps.aamovieproject.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,25 +6,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.jkapps.aamovieproject.R
 import com.jkapps.aamovieproject.data.entity.Movie
 
-class MovieListAdapter(private val listener: OnMovieClickListener) : RecyclerView.Adapter<MovieListAdapter.MovieListViewHolder>() {
-    private val movies: MutableList<Movie> = mutableListOf()
+class MovieListAdapter(private val listener: OnMovieClickListener) : ListAdapter<Movie, MovieListAdapter.MovieListViewHolder>(MovieCallback()) {
 
     interface OnMovieClickListener {
         fun onClick(movie: Movie)
-    }
-
-    fun setMovies(movies: List<Movie>) {
-        this.movies.apply {
-            clear()
-            addAll(movies)
-        }
-        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieListViewHolder {
@@ -32,12 +25,8 @@ class MovieListAdapter(private val listener: OnMovieClickListener) : RecyclerVie
         return MovieListViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
-
     override fun onBindViewHolder(holder: MovieListViewHolder, position: Int) {
-        holder.bind(movies[position])
+        holder.bind(getItem(position))
     }
 
     inner class MovieListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -68,6 +57,17 @@ class MovieListAdapter(private val listener: OnMovieClickListener) : RecyclerVie
             itemView.setOnClickListener {
                 listener.onClick(movie)
             }
+        }
+    }
+
+    class MovieCallback : DiffUtil.ItemCallback<Movie>() {
+
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+            return oldItem == newItem
         }
     }
 }

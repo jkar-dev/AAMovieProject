@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject.adapters
+package com.jkapps.aamovieproject.adapter
 
 import android.view.LayoutInflater
 import android.view.View

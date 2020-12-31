@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jkapps.aamovieproject.NavigationListener
 import com.jkapps.aamovieproject.R
-import com.jkapps.aamovieproject.adapters.ActorsAdapter
+import com.jkapps.aamovieproject.adapter.ActorsAdapter
 import com.jkapps.aamovieproject.data.entity.Movie
 
 class FragmentMoviesDetails : Fragment() {
