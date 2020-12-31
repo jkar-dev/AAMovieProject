@@ -2,6 +2,8 @@
 <resources>
     <string name="app_name">AAMovieProject</string>
     <string name="back">Back</string>
+    <string name="error_message">Cannot load movies</string>
+    <string name="try_again">Try again</string>
     <string name="titleTwoLine">Avengers:\nEnd Game</string>
     <string name="title">Avengers: End Game</string>
     <string name="genres">Action, Adventure, Fantasy</string>
