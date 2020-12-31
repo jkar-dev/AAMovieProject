@@ -24,25 +24,30 @@ data class MovieResponse(
     @field:Json(name = "overview")
     val overview: String,
     @field:Json(name = "adult")
-    val adult: Boolean
+    val adult: Boolean,
+    @field:Json(name = "credits")
+    val credits : CreditsResponse
 ) {
     fun mapToMovie(): Movie {
         return Movie(
             id = id,
             title = title,
             overview = overview,
-            poster = "$IMAGE_BASE_URL$posterPicture",
-            backdrop = "$IMAGE_BASE_URL$backdropPicture",
+            poster = "$POSTER_URL$posterPicture",
+            backdrop = "$BACKDROP_URL$backdropPicture",
             runtime = runtime,
             genres = genres,
             ratings = ratings,
             numberOfRatings = votesCount,
-            minimumAge = if (adult) 16 else 13
+            minimumAge = if (adult) 16 else 13,
+            actors = credits.cast.take(10).map { it.copy(picture = "$PROFILE_URL${it.picture}") }
         )
     }
 
     companion object {
-        private const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500"
+        private const val POSTER_URL = "https://image.tmdb.org/t/p/w342"
+        private const val BACKDROP_URL = "https://image.tmdb.org/t/p/w780"
+        private const val PROFILE_URL = "https://image.tmdb.org/t/p/w185"
     }
 }
 
