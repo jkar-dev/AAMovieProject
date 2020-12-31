@@ -34,6 +34,14 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
         viewModel.movies.observe(this) {
             adapter.submitList(it)
         }
+        viewModel.isLoading.observe(this) {
+            setLoading(it)
+        }
+    }
+
+    private fun setLoading(isLoading: Boolean) {
+        val pb = requireView().findViewById<ProgressBar>(R.id.pb_loading)
+        pb.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private fun setUpRecycler() {
