@@ -1,5 +1,6 @@
 package com.jkapps.aamovieproject.network
 
+import com.jkapps.aamovieproject.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,7 +10,7 @@ import retrofit2.create
 import java.util.concurrent.TimeUnit
 
 private const val BASE_URL = "https://api.themoviedb.org/3/"
-private const val API_KEY = "14bb2449116aeea6b3c3661a4d68c4bc"
+private const val API_KEY = BuildConfig.API_KEY
 
 object NetworkModule {
 
