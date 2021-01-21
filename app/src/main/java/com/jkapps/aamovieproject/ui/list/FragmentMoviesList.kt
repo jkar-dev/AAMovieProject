@@ -52,12 +52,13 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     }
 
     private fun showError() {
-        snackbar = Snackbar.make(requireView(), R.string.error_message, Snackbar.LENGTH_INDEFINITE).apply {
-            setAction(R.string.try_again) {
-                viewModel.loadMovies()
-            }
-            show()
-        }
+        if (snackbar == null) snackbar =
+            Snackbar.make(requireView(), R.string.error_message, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.try_again) {
+                    viewModel.loadMovies()
+                }
+
+        snackbar?.show()
     }
 
     private fun setLoading(isLoading: Boolean) {
