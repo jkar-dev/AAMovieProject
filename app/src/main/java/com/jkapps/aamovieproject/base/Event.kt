@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject.util
+package com.jkapps.aamovieproject.base
 
 open class Event<out T>(private val content: T) {
     private var hasBeenHandled = false

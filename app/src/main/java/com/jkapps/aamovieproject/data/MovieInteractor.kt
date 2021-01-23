@@ -1,5 +1,7 @@
 package com.jkapps.aamovieproject.data
 
+import com.jkapps.aamovieproject.base.MovieRepository
+import com.jkapps.aamovieproject.base.Result
 import com.jkapps.aamovieproject.data.entity.Movie
 
 class MovieInteractor(private val repository: MovieRepository) {

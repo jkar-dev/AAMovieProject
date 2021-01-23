@@ -1,14 +1,13 @@
 package com.jkapps.aamovieproject.ui.list
 
-import android.util.EventLog
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jkapps.aamovieproject.data.MovieInteractor
-import com.jkapps.aamovieproject.data.Result
+import com.jkapps.aamovieproject.base.Result
 import com.jkapps.aamovieproject.data.entity.Movie
-import com.jkapps.aamovieproject.util.Event
+import com.jkapps.aamovieproject.base.Event
 import kotlinx.coroutines.launch
 
 class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() {

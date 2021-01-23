@@ -1,4 +1,4 @@
-package com.jkapps.aamovieproject.network
+package com.jkapps.aamovieproject.data.remote
 
 import com.jkapps.aamovieproject.BuildConfig
 import okhttp3.Interceptor

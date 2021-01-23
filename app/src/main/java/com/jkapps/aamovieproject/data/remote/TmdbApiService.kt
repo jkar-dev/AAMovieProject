@@ -1,7 +1,7 @@
-package com.jkapps.aamovieproject.network
+package com.jkapps.aamovieproject.data.remote
 
-import com.jkapps.aamovieproject.network.response.MovieListResponse
-import com.jkapps.aamovieproject.network.response.MovieResponse
+import com.jkapps.aamovieproject.data.remote.response.MovieListResponse
+import com.jkapps.aamovieproject.data.remote.response.MovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

@@ -1,8 +1,9 @@
 package com.jkapps.aamovieproject.data
 
-import com.jkapps.aamovieproject.network.TmdbApiService
-import com.jkapps.aamovieproject.network.response.MovieId
-import com.jkapps.aamovieproject.network.response.MovieResponse
+import com.jkapps.aamovieproject.base.MovieRepository
+import com.jkapps.aamovieproject.data.remote.TmdbApiService
+import com.jkapps.aamovieproject.data.remote.response.MovieId
+import com.jkapps.aamovieproject.data.remote.response.MovieResponse
 
 class MovieRepositoryImpl(private val service: TmdbApiService) : MovieRepository {
 
