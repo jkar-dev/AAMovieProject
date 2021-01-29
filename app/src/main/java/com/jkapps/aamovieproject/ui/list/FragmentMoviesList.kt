@@ -75,7 +75,7 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
 
                     val lastVisiblePosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
                     if (lastVisiblePosition > adapter!!.itemCount - 2) {
-                        viewModel.loadMovies()
+                        viewModel.loadMore()
                     }
                 }
             })
@@ -83,7 +83,7 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
     }
 
     private fun initViewModel() {
-        val factory = MyViewModelFactory(App.instance!!.interactor)
+        val factory = MyViewModelFactory(App.instance!!.repository)
         viewModel = ViewModelProvider(this, factory)[MovieListViewModel::class.java]
     }
 

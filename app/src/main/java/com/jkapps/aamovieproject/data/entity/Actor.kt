@@ -1,15 +1,17 @@
 package com.jkapps.aamovieproject.data.entity
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Parcelize
+@Serializable
 data class Actor(
-    @field:Json(name = "id")
+    @SerialName("id")
     val id: Int,
-    @field:Json(name = "name")
+    @SerialName("name")
     val name: String,
-    @field:Json(name = "profile_path")
-    val picture: String
+    @SerialName("profile_path")
+    val picture: String?
 ) : Parcelable

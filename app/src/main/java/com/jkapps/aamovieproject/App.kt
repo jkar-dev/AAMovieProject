@@ -1,22 +1,28 @@
 package com.jkapps.aamovieproject
 
 import android.app.Application
-import com.jkapps.aamovieproject.data.MovieInteractor
+import androidx.room.Room
+import com.jkapps.aamovieproject.base.MovieRepository
 import com.jkapps.aamovieproject.data.MovieRepositoryImpl
+import com.jkapps.aamovieproject.data.local.DATABASE_NAME
+import com.jkapps.aamovieproject.data.local.MovieDatabase
 import com.jkapps.aamovieproject.data.remote.NetworkModule
 
 class App : Application() {
-    lateinit var interactor : MovieInteractor
+    lateinit var repository: MovieRepository
 
     override fun onCreate() {
         super.onCreate()
-
         instance = this
-        val repository = MovieRepositoryImpl(NetworkModule.tmdbService)
-        interactor = MovieInteractor(repository)
+
+        val db = Room.databaseBuilder(
+            applicationContext,
+            MovieDatabase::class.java, DATABASE_NAME
+        ).build()
+        repository = MovieRepositoryImpl(db.movieDao(), NetworkModule.tmdbService)
     }
 
     companion object {
-        var instance : App? = null
+        var instance: App? = null
     }
 }

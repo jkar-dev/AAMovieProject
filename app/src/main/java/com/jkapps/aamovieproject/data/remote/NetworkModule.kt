@@ -1,11 +1,14 @@
 package com.jkapps.aamovieproject.data.remote
 
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.jkapps.aamovieproject.BuildConfig
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import java.util.concurrent.TimeUnit
 
@@ -36,10 +39,16 @@ object NetworkModule {
         .addInterceptor(logginingInterceptor)
         .build()
 
+
+    private val json = Json {
+        ignoreUnknownKeys = true
+    }
+
+    @Suppress("EXPERIMENTAL_API_USAGE")
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(httpClient)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .build()
 
 

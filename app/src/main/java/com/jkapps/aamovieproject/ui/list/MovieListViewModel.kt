@@ -4,13 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jkapps.aamovieproject.data.MovieInteractor
 import com.jkapps.aamovieproject.base.Result
 import com.jkapps.aamovieproject.data.entity.Movie
 import com.jkapps.aamovieproject.base.Event
+import com.jkapps.aamovieproject.base.MovieRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() {
+class MovieListViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _movies : MutableLiveData<List<Movie>> = MutableLiveData()
     private val _isLoading : MutableLiveData<Boolean> = MutableLiveData(true)
     private val _error : MutableLiveData<Event<Unit>> = MutableLiveData()
@@ -28,11 +29,25 @@ class MovieListViewModel(private val interactor: MovieInteractor) : ViewModel() 
     fun loadMovies() {
         viewModelScope.launch {
             _isLoading.value = true
-            val result = interactor.loadMovies(page++)
-                when (result) {
-                    is Result.Success -> addToMoviesLiveData(result.output)
+            repository.getMovies().collect {
+                when (it) {
+                    is Result.Success -> addToMoviesLiveData(it.output)
                     is Result.Error -> handleError()
                 }
+            }
+            _isLoading.value = false
+        }
+    }
+
+    fun loadMore() {
+        viewModelScope.launch {
+            _isLoading.value = true
+            repository.loadMoreMovies(++page).collect {
+                when (it) {
+                    is Result.Success -> addToMoviesLiveData(it.output)
+                    is Result.Error -> handleError()
+                }
+            }
             _isLoading.value = false
         }
     }

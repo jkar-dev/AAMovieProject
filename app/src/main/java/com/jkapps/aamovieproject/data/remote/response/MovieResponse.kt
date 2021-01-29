@@ -2,30 +2,32 @@ package com.jkapps.aamovieproject.data.remote.response
 
 import com.jkapps.aamovieproject.data.entity.Genre
 import com.jkapps.aamovieproject.data.entity.Movie
-import com.squareup.moshi.Json
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class MovieResponse(
-    @field:Json(name = "id")
+    @SerialName("id")
     val id: Int,
-    @field:Json(name = "title")
+    @SerialName("title")
     val title: String,
-    @field:Json(name = "poster_path")
-    val posterPicture: String,
-    @field:Json(name = "backdrop_path")
-    val backdropPicture: String,
-    @field:Json(name = "runtime")
+    @SerialName("poster_path")
+    val posterPicture: String?,
+    @SerialName("backdrop_path")
+    val backdropPicture: String?,
+    @SerialName("runtime")
     val runtime: Int,
-    @field:Json(name = "genres")
+    @SerialName("genres")
     val genres: List<Genre>,
-    @field:Json(name = "vote_average")
+    @SerialName("vote_average")
     val ratings: Float,
-    @field:Json(name = "vote_count")
+    @SerialName("vote_count")
     val votesCount: Int,
-    @field:Json(name = "overview")
+    @SerialName("overview")
     val overview: String,
-    @field:Json(name = "adult")
+    @SerialName("adult")
     val adult: Boolean,
-    @field:Json(name = "credits")
+    @SerialName("credits")
     val credits : CreditsResponse
 ) {
     fun mapToMovie(): Movie {

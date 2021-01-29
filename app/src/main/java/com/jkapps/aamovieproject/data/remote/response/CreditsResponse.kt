@@ -1,9 +1,11 @@
 package com.jkapps.aamovieproject.data.remote.response
 
 import com.jkapps.aamovieproject.data.entity.Actor
-import com.squareup.moshi.Json
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class CreditsResponse(
-    @field:Json(name = "cast")
+   @SerialName("cast")
     val cast : List<Actor>
 )
