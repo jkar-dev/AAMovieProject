@@ -24,5 +24,6 @@ class App : Application() {
 
     companion object {
         var instance: App? = null
+        const val TAG = " AppDebug"
     }
 }

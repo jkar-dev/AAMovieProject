@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -75,7 +76,7 @@ class FragmentMoviesList : Fragment(), MovieListAdapter.OnMovieClickListener {
 
                     val lastVisiblePosition = (layoutManager as GridLayoutManager).findLastVisibleItemPosition()
                     if (lastVisiblePosition > adapter!!.itemCount - 2) {
-                        viewModel.loadMore()
+                        viewModel.loadMovies()
                     }
                 }
             })

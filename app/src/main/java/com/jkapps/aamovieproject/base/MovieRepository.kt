@@ -7,8 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    suspend fun getMovies() : Flow<Result<List<Movie>>>
-    suspend fun loadMoreMovies(page : Int) : Flow<Result<List<Movie>>>
+    suspend fun getMovies(isFirstLoad : Boolean, page: Int) : Flow<ResponseResult<List<Movie>>>
     suspend fun loadDetails(id : Int) : MovieResponse
     suspend fun loadMoviesIds(page: Int) : List<MovieId>
 }
