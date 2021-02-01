@@ -58,7 +58,7 @@ class MovieListViewModel(private val repository: MovieRepository) : ViewModel() 
 
     private fun handleError() {
         _error.value = Event(Unit)
-        //page--
+        page--
     }
 
     companion object {
